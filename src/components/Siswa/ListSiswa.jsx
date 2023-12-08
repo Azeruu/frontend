@@ -2,6 +2,7 @@ import "./ListSiswa.css";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { URL_HOST } from "../../lib/helper";
 import axios from "axios";
 
 const ListSiswa = () => {
@@ -33,7 +34,7 @@ const ListSiswa = () => {
   useEffect(() => {
     const checkDataExistence = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/data_siswa", {
+        const response = await axios.get(`${URL_HOST}/data_siswa`, {
           params: {
             userId: user.id,
           },
@@ -60,7 +61,7 @@ const ListSiswa = () => {
   };
 
   const getSiswa = async () => {
-    const response = await axios.get("http://localhost:5000/data_siswa");
+    const response = await axios.get(`${URL_HOST}/data_siswa`);
     setSiswa(response.data);
   };
   useEffect(() => {
@@ -70,7 +71,7 @@ const ListSiswa = () => {
   useEffect(() => {
     const jumlahData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/data_siswa");
+        const response = await axios.get(`${URL_HOST}/data_siswa`);
         setJmlData(response.data.length);
       } catch (error) {
         console.log(error);
@@ -81,10 +82,10 @@ const ListSiswa = () => {
 
   const hapusSiswa = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/hasil/${id}`);
-      await axios.delete(`http://localhost:5000/rekap_nilai/${id}`);
-      await axios.delete(`http://localhost:5000/data_nilai/${id}`);
-      await axios.delete(`http://localhost:5000/data_siswa/${id}`);
+      await axios.delete(`${URL_HOST}/hasil/${id}`);
+      await axios.delete(`${URL_HOST}/rekap_nilai/${id}`);
+      await axios.delete(`${URL_HOST}/data_nilai/${id}`);
+      await axios.delete(`${URL_HOST}/data_siswa/${id}`);
       getSiswa();
     } catch (error) {
       console.log(error);

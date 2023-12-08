@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import DaftarInputUserTextNumber from './DaftarInputUserTextNumber';
+import { URL_HOST } from '../../lib/helper';
 
 export default function Daftar() {
   const { handleSubmit, register, formState:{errors}, setValue} = useForm();
@@ -13,7 +14,7 @@ export default function Daftar() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post("http://localhost:5000/data_siswa", data);
+      const response = await axios.post(`${URL_HOST}/data_siswa`, data);
       // console.log("Data Berhasil Di Input", response.data);
       const newId = response.data.idSiswaBaru;
       // console.log(newId);
@@ -27,7 +28,7 @@ export default function Daftar() {
   
   useEffect(() => {
     const getJalur = async(data) =>{
-      const response = await axios.get("http://localhost:5000/jalur", data);
+      const response = await axios.get(`${URL_HOST}/jalur`, data);
       setJalur(response.data);
       setValue('id', response.data.id);
       setValue('nama_jalur', response.data.nama_jalur);

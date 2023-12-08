@@ -2,6 +2,7 @@ import {useState} from 'react';
 import "./ListUser.css";
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import { URL_HOST } from '../../lib/helper';
 
 const AddUser = () => {
     const [username, setUsername] = useState('');
@@ -15,7 +16,7 @@ const AddUser = () => {
     const saveUser = async (e) =>{
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/users',{
+            await axios.post(`${URL_HOST}/users`,{
                 username : username,
                 email : email,
                 password : password,

@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import { URL_HOST } from '../../lib/helper';
 
 const AddJalur = () => {
     const [jalur, setJalur] = useState('');
@@ -10,7 +11,7 @@ const AddJalur = () => {
     const saveJalur = async (e) =>{
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/jalur',{
+            await axios.post(`${URL_HOST}/jalur`,{
                 nama_jalur : jalur,
             });
             navigate("/jalur");

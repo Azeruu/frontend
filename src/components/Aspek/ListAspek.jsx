@@ -1,6 +1,7 @@
 import "./ListAspek.css";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { URL_HOST } from "../../lib/helper";
 import axios from "axios";
 
 const ListAspek = () => {
@@ -32,12 +33,12 @@ const ListAspek = () => {
   
   // Batas
   const getAspek = async () => {
-    const response = await axios.get("http://localhost:5000/rekap_nilai");
+    const response = await axios.get(`${URL_HOST}/rekap_nilai`);
     setAspek(response.data);
   };
   const hapusAspek = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/rekap_nilai/${id}`);
+      await axios.delete(`${URL_HOST}/rekap_nilai/${id}`);
       getAspek();
     } catch (error) {
       console.log(error);
@@ -45,7 +46,7 @@ const ListAspek = () => {
   };
   const jumlahData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/rekap_nilai");
+      const response = await axios.get(`${URL_HOST}/rekap_nilai`);
       setJmlData(response.data.length);
     } catch (error) {
       console.log(error);

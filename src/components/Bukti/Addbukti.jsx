@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { URL_HOST } from '../../lib/helper';
 import axios from 'axios';
 import "./addBukti.css";
 
@@ -33,7 +34,7 @@ const AddBukti = () => {
         formDataForApi.append('SS_lulus_dapodik', file.SS_lulus_dapodik);
 
         try {
-            await axios.post('http://localhost:5000/bukti', formDataForApi,{
+            await axios.post(`${URL_HOST}/bukti`, formDataForApi,{
                 headers:{
                     "Content-Type":"multipart/form-data"
                 }

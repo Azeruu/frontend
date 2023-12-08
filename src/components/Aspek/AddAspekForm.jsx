@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import { URL_HOST } from '../../lib/helper';
 import Sidebar from '../NavSide/Sidebar';
 import Navbar from '../NavSide/Navbar';
 import ArrowLeft from "feather-icons-react/build/IconComponents/ArrowLeft";
@@ -14,7 +15,7 @@ const AddAspek = () => {
     const saveUser = async (e) =>{
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/jalur',{
+            await axios.post(`${URL_HOST}/jalur`,{
                 nama_jalur : jalur,
             });
             navigate("/aspek");

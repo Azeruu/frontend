@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import axios from "axios";
 import {useNavigate, useParams } from 'react-router-dom';
 import {DaftarInputNilaiMapel} from './DaftarInputNilaiMapel';
+import { URL_HOST } from '../../lib/helper';
 
 export default function Daftar2() {
   const { handleSubmit, register, formState:{errors}} = useForm();
@@ -13,12 +14,12 @@ export default function Daftar2() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post("http://localhost:5000/data_nilai", data);
+      const response = await axios.post(`${URL_HOST}/data_nilai`, data);
       const newId = response.data.idSiswaBaru;
       alert("Data Nilai Berhasil Di Input")
       navigate(`/bukti/${newId}`);
-      await axios.post("http://localhost:5000/rekap_nilai");
-      await axios.post("http://localhost:5000/hasil");
+      await axios.post(`${URL_HOST}/rekap_nilai`);
+      await axios.post(`${URL_HOST}/hasil`);
       console.log(response.data);
   } catch (e) {
     console.log("error dalam submit data:", e);

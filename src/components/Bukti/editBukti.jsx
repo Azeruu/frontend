@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { URL_HOST } from '../../lib/helper';
 import axios from 'axios';
 import "./editBukti.css";
 
@@ -27,7 +28,7 @@ const EditBukti = () => {
     },[]);
     const getBuktiByID = async() =>{
         try {
-            const res = await axios.get(`http://localhost:5000/bukti/${id}`);
+            const res = await axios.get(`${URL_HOST}/bukti/${id}`);
             console.log(res.data);
             setOldFile(res.data)
         } catch (error) {
@@ -58,7 +59,7 @@ const EditBukti = () => {
         formDataForApi.append('old_SS_lulus_dapodik', oldFile.SS_lulus_dapodik);
 
         try {
-            const edit = await axios.patch(`http://localhost:5000/bukti/${id}`, formDataForApi,{
+            const edit = await axios.patch(`${URL_HOST}/bukti/${id}`, formDataForApi,{
                 headers:{
                     "Content-Type":"multipart/form-data"
                 }
@@ -97,7 +98,7 @@ const EditBukti = () => {
                         <label className='bukti-label'> Ijazah SK : <input type="file" accept=".pdf, .jpg, .jpeg, .png" name="ijazah_sk" onChange={handleFileChange} /></label>
                             {(oldFile.ijazah_sk && !file.ijazah_sk) && (
                                 <figure>
-                                    <img src={`http://localhost:5000/images/${oldFile.ijazah_sk}`} alt="Ijazah SK" />
+                                    <img src={`${URL_HOST}/images/${oldFile.ijazah_sk}`} alt="Ijazah SK" />
                                     <figcaption>Ijazah SK</figcaption>
                                 </figure>
                             )}
@@ -119,7 +120,7 @@ const EditBukti = () => {
                         <label className='bukti-label'>Kartu Keluarga : <input type="file" accept=".pdf, .jpg, .jpeg, .png" name="kartu_keluarga" onChange={handleFileChange} /></label>
                         {(oldFile.kartu_keluarga && !file.kartu_keluarga) && (
                             <figure>
-                                <img src={`http://localhost:5000/images/${oldFile.kartu_keluarga}`} alt="Kartu Keluarga" />
+                                <img src={`${URL_HOST}/images/${oldFile.kartu_keluarga}`} alt="Kartu Keluarga" />
                                 <figcaption>Kartu Keluarga</figcaption>
                             </figure>
                         )}
@@ -141,7 +142,7 @@ const EditBukti = () => {
                         <label className='bukti-label'>Akta Kelahiran : <input type="file" accept=".pdf, .jpg, .jpeg, .png" name="akta_kelahiran" onChange={handleFileChange}/></label>
                         {(oldFile.akta_kelahiran && !file.akta_kelahiran) && (
                             <figure>
-                                <img src={`http://localhost:5000/images/${oldFile.akta_kelahiran}`} alt="Akta Kelahiran" />
+                                <img src={`${URL_HOST}/images/${oldFile.akta_kelahiran}`} alt="Akta Kelahiran" />
                                 <figcaption>Akta Kelahiran</figcaption>
                             </figure>
                         )}
@@ -163,7 +164,7 @@ const EditBukti = () => {
                         <label className='bukti-label'>ScreenShoot Lulus Dari Dapodik : <input type="file" accept=".pdf, .jpg, .jpeg, .png" name="SS_lulus_dapodik" onChange={handleFileChange}/></label>
                         {(oldFile.SS_lulus_dapodik && !file.SS_lulus_dapodik) && (
                             <figure>
-                                <img src={`http://localhost:5000/images/${oldFile.SS_lulus_dapodik}`} alt="SS Lulus Dari Dapodik" />
+                                <img src={`${URL_HOST}/images/${oldFile.SS_lulus_dapodik}`} alt="SS Lulus Dari Dapodik" />
                                 <figcaption>SS Lulus Dari Dapodik</figcaption>
                             </figure>
                         )}

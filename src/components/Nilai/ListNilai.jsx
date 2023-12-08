@@ -1,6 +1,7 @@
 import "./ListNilai.css";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { URL_HOST } from "../../lib/helper";
 import axios from "axios";
 
 const ListNilai = () => {
@@ -33,15 +34,15 @@ const ListNilai = () => {
     }, []);
 
     const getNilai = async () => {
-        const response = await axios.get("http://localhost:5000/data_nilai");
+        const response = await axios.get(`${URL_HOST}/data_nilai`);
         setNilai(response.data);
     };
     // const hapusNilai = async (id) => {
     //     try {
-    //     await axios.delete(`http://localhost:5000/hasil/${id}`);
-    //     await axios.delete(`http://localhost:5000/rekap_nilai/${id}`);
-    //     await axios.delete(`http://localhost:5000/data_nilai/${id}`);
-    //     await axios.delete(`http://localhost:5000/data_nilai/${id}`);
+    //     await axios.delete(`${URL_HOST}/hasil/${id}`);
+    //     await axios.delete(`${URL_HOST}/rekap_nilai/${id}`);
+    //     await axios.delete(`${URL_HOST}/data_nilai/${id}`);
+    //     await axios.delete(`${URL_HOST}/data_nilai/${id}`);
     //     getNilai();
     //     } catch (error) {
     //     console.log(error);
@@ -49,7 +50,7 @@ const ListNilai = () => {
     // };
     const jumlahData = async () => {
         try {
-        const response = await axios.get("http://localhost:5000/data_nilai");
+        const response = await axios.get(`${URL_HOST}/data_nilai`);
         setJmlData(response.data.length);
         } catch (error) {
         console.log(error);

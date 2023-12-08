@@ -1,5 +1,6 @@
 import "./ListHasil.css";
 import { useState, useEffect } from "react";
+import { URL_HOST } from "../../lib/helper";
 import axios from "axios";
 
 const ListHasil = () => {
@@ -30,7 +31,7 @@ const ListHasil = () => {
 
   const getRekapNilai = async() =>{
     try {
-      const response = await axios.get('http://localhost:5000/hasil');
+      const response = await axios.get(`${URL_HOST}/hasil`);
       setHasil(response.data)
     } catch (error) {
       console.error('Gagal mengambil data dari API:', error);
@@ -38,7 +39,7 @@ const ListHasil = () => {
   }
   // const hapusRekapNilai = async (id) => {
   //   try {
-  //     await axios.delete(`http://localhost:5000/hasil/${id}`);
+  //     await axios.delete(`${URL_HOST}/hasil/${id}`);
   //     getRekapNilai();
   //   } catch (error) {
   //     console.log(error);
@@ -46,7 +47,7 @@ const ListHasil = () => {
   // };
   const jumlahData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/hasil");
+      const response = await axios.get(`${URL_HOST}/hasil`);
       setJmlData(response.data.length);
     } catch (error) {
       console.log(error);
